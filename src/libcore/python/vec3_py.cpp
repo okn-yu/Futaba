@@ -17,9 +17,7 @@ FTB_PY_EXPORT(vec3) {
             .def(py::init<float, float, float>())
             .def(py::init<float>())
 
-            .def("x", &Vec3::x)
-            .def("y", &Vec3::y)
-            .def("z", &Vec3::z)
+            .def_readwrite("elements", &Vec3::elements)
 
             .def("length", &Vec3::length)
             .def("squared_length", &Vec3::squared_length)
