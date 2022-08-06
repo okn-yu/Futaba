@@ -114,6 +114,13 @@ public:
         return *this;
     };
 
+    Vec3 &operator*=(const float k) {
+        elements[0] *= k;
+        elements[1] *= k;
+        elements[2] *= k;
+        return *this;
+    };
+
     Vec3 &operator/=(const Vec3 &v) {
         elements[0] /= v.elements[0];
         elements[1] /= v.elements[1];
@@ -153,6 +160,10 @@ inline Vec3 operator-(const Vec3 &v1, const Vec3 &v2) {
 
 inline Vec3 operator*(const Vec3 &v1, const Vec3 &v2) {
     return {v1.elements[0] * v2.elements[0], v1.elements[1] * v2.elements[1], v1.elements[2] * v2.elements[2]};
+}
+
+inline Vec3 operator/(const Vec3 &v1, const Vec3 &v2) {
+    return {v1.elements[0] / v2.elements[0], v1.elements[1] / v2.elements[1], v1.elements[2] / v2.elements[2]};
 }
 
 inline bool operator==(const Vec3 &v1, const Vec3 &v2) {

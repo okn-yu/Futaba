@@ -1,4 +1,4 @@
-if (CMAKE_DEBUG_OPT)
+if (CMAKE_DEBUG_MSG)
     message("Start /src/futaba/CMake.")
 endif ()
 

@@ -1,5 +1,5 @@
-if (CMAKE_DEBUG_OPT)
-    message("Start /src/libcore/CMake.")
+if (CMAKE_DEBUG_MSG)
+    message("Start /src/libcore/CMake")
 endif ()
 
 set(INC_DIR "../../include/futaba/core")

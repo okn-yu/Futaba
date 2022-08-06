@@ -1,9 +1,10 @@
-if (CMAKE_DEBUG_OPT)
-    message("Start /src/CMake.")
+if (CMAKE_DEBUG_MSG)
+    message("Start /src/CMake")
 endif ()
 
 # futaba support libraries
 add_subdirectory(libcore)
+#add_subdirectory(librender)
 
 # futaba executables
 add_subdirectory(futaba)
