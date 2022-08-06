@@ -106,7 +106,6 @@ PROJECT(PracticePathTracing CXX)
 # 定義したライン以降の全てのターゲットが指定したディレクトリをインクルードしてしまう
 # んがっ、Mitsubaでは利用されている...!
 # include_directories(${CMAKE_SOURCE_DIR}/include)
-#include_directories(${CMAKE_SOURCE_DIR}/etc/pybind11/include)
 
 
 # C++の標準仕様の指定

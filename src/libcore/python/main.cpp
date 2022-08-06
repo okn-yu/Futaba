@@ -6,9 +6,11 @@
 #include <futaba/futaba.h>
 #include <futaba/python/python.h>
 
-// 将来的にマクロで置き換えるプロトタイプ宣言
+/*
+ * ヘッダファイルを利用する代わりとしてマクロを用いてプロトタイプ宣言を行う
+ */
 FTB_PY_DECLARE(vec3);
-//extern void python_export_vec3(py::module &m);
+FTB_PY_DECLARE(image);
 
 /*
  * futaba_pythonはCMakeのtargetにも同名の指定が必要
@@ -48,5 +50,5 @@ PYBIND11_MODULE(futaba_py, m) {
     m.attr("FTB_AUTHORS") = FTB_AUTHORS;
 
     FTB_PY_IMPORT(vec3);
-    //python_export_vec3(m);
+    //FTB_PY_IMPORT(image);
 }
