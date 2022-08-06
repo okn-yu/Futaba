@@ -104,7 +104,7 @@
  * そのため予め0-255の各値に対してガンマ補正後の値を計算し、ガンマ補正実行時は参照のみを行う
  */
 
-std::map<uint8_t, uint8_t> Gamma_LUT{
+inline std::map<uint8_t, uint8_t> Gamma_LUT{
         {0,   0},
         {1,   11},
         {2,   17},

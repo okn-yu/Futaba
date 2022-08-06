@@ -148,6 +148,11 @@ public:
  * inline展開を多用するとソースコードが肥大化しビルド時間が増える
  * 人ではなくコンパイラにinlineの利用を決定させるほうが高速化する場合がある
  * https://qiita.com/omuRice/items/9e31d9ba17b32703b3b1
+ *
+ * またinlineを付与すると定義ではなくなるため、duplicate symbolエラーを回避することができる
+ * https://qiita.com/Luke02561/items/43bed4008dd707617a94
+ * インクルードガードではある.cppファイル内でヘッダファイルの重複は回避できる（逆に言うと一度は読み込まれている）
+ * しかし複数の.oファイル同士をリンクする場合は、それぞれで1度だけ展開されたヘッダファイル内の定義同士が衝突しうる
  */
 
 inline Vec3 operator+(const Vec3 &v1, const Vec3 &v2) {
