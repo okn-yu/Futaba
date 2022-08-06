@@ -282,7 +282,7 @@ inline Vec3 unit_vec(Vec3 v) {
     return v / v.length();
 }
 
-void orthonormal_basis(const Vec3 &src_vec, Vec3 &base_v2, Vec3 &base_v3) {
+inline void orthonormal_basis(const Vec3 &src_vec, Vec3 &base_v2, Vec3 &base_v3) {
     assert(src_vec.length() == 1);
     Vec3 tmp;
     if (std::abs(src_vec.x()) > 0.9f)
@@ -305,7 +305,7 @@ void orthonormal_basis(const Vec3 &src_vec, Vec3 &base_v2, Vec3 &base_v3) {
  * s, n, tはワールド系の正規直交基底で定義されたローカル系の正規直交基底
  * 単純に内積を計算して射影している
  */
-Vec3 world_2_local(const Vec3 &world_v, const Vec3 &s, const Vec3 &n, const Vec3 &t) {
+inline Vec3 world_2_local(const Vec3 &world_v, const Vec3 &s, const Vec3 &n, const Vec3 &t) {
     return {dot(world_v, s), dot(world_v, n), dot(world_v, t)};
 }
 
@@ -324,7 +324,7 @@ Vec3 world_2_local(const Vec3 &world_v, const Vec3 &s, const Vec3 &n, const Vec3
  * (v_s * s_x + v_n * n_x + v_t * t_x) : x成分
  *
  */
-Vec3 local_2_world(Vec3 &v, Vec3 &s, Vec3 &n, Vec3 &t) {
+inline Vec3 local_2_world(Vec3 &v, Vec3 &s, Vec3 &n, Vec3 &t) {
     Vec3 a = Vec3(s.x(), n.x(), t.x());
     Vec3 b = Vec3(s.y(), n.y(), t.y());
     Vec3 c = Vec3(s.z(), n.z(), t.z());
