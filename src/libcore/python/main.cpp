@@ -14,7 +14,7 @@ FTB_PY_DECLARE(image);
 FTB_PY_DECLARE(rgb_pixel);
 
 /*
- * futaba_pythonはCMakeのtargetにも同名の指定が必要
+ * futaba_pyはCMakeのtargetにも同名の指定が必要
  */
 PYBIND11_MODULE(futaba_py, m) {
 

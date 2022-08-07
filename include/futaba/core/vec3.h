@@ -153,6 +153,9 @@ public:
  * https://qiita.com/Luke02561/items/43bed4008dd707617a94
  * インクルードガードではある.cppファイル内でヘッダファイルの重複は回避できる（逆に言うと一度は読み込まれている）
  * しかし複数の.oファイル同士をリンクする場合は、それぞれで1度だけ展開されたヘッダファイル内の定義同士が衝突しうる
+ *
+ * 二重定義はコンパイル時とリンク時に起きる問題であり、それぞれ原因が異なる
+ * http://www7b.biglobe.ne.jp/~robe/cpphtml/html01/cpp01070.html
  */
 
 inline Vec3 operator+(const Vec3 &v1, const Vec3 &v2) {
