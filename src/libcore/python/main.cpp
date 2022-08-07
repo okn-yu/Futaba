@@ -11,6 +11,7 @@
  */
 FTB_PY_DECLARE(vec3);
 FTB_PY_DECLARE(image);
+FTB_PY_DECLARE(ray);
 FTB_PY_DECLARE(rgb_pixel);
 
 /*
@@ -52,5 +53,6 @@ PYBIND11_MODULE(futaba_py, m) {
 
     FTB_PY_IMPORT(vec3);
     FTB_PY_IMPORT(image);
+    FTB_PY_IMPORT(ray);
     FTB_PY_IMPORT(rgb_pixel);
 }
