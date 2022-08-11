@@ -9,18 +9,19 @@
 /*
  * ヘッダファイルを利用する代わりとしてマクロを用いてプロトタイプ宣言を行う
  */
-FTB_PY_DECLARE(vec3);
 
-FTB_PY_DECLARE(image);
+FTB_PY_DECLARE(aggregate);
 
-FTB_PY_DECLARE(ray);
+FTB_PY_DECLARE(hit);
 
-FTB_PY_DECLARE(rgb_pixel);
+FTB_PY_DECLARE(pinhole_camera);
+
+FTB_PY_DECLARE(sphere);
 
 /*
  * futaba_pyはCMakeのtargetにも同名の指定が必要
  */
-PYBIND11_MODULE(futaba_py, m) {
+PYBIND11_MODULE(librender_py, m) {
 
     /*
      * ここではモジュールの属性を指定している
@@ -45,7 +46,7 @@ PYBIND11_MODULE(futaba_py, m) {
      * 'okn-yu'
      */
 
-    m.attr("__name__") = "futaba_python";
+    m.attr("__name__") = "librender_python";
     m.attr("__version__") = FTB_VERSION;
     m.attr("FTB_VERSION") = FTB_VERSION;
     m.attr("FTB_VERSION_MAJOR") = FTB_VERSION_MAJOR;
@@ -54,8 +55,9 @@ PYBIND11_MODULE(futaba_py, m) {
     m.attr("FTB_YEAR") = FTB_YEAR;
     m.attr("FTB_AUTHORS") = FTB_AUTHORS;
 
-    FTB_PY_IMPORT(vec3);
-    FTB_PY_IMPORT(image);
-    FTB_PY_IMPORT(ray);
-    FTB_PY_IMPORT(rgb_pixel);
+    FTB_PY_IMPORT(aggregate);
+    FTB_PY_IMPORT(hit);
+    FTB_PY_IMPORT(pinhole_camera);
+    FTB_PY_IMPORT(sphere);
+
 }

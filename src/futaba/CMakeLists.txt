@@ -4,6 +4,6 @@ endif ()
 
 add_executable(futaba futaba.cpp)
 #target_include_directories(futaba PRIVATE ${PROJECT_SOURCE_DIR}include)
-target_link_libraries(futaba PRIVATE futaba-core)
+target_link_libraries(futaba PRIVATE futaba-core futaba-sensor)
 
 

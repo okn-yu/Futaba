@@ -31,7 +31,7 @@ public:
 };
 
 
-std::ostream &operator<<(std::ostream &stream, const Ray &ray) {
+inline std::ostream &operator<<(std::ostream &stream, const Ray &ray) {
     stream << "origin: " << ray.origin << " direction: " << ray.direction;
     return stream;
 }
