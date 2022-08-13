@@ -10,3 +10,6 @@ target_include_directories(librender_py PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 # futaba-coreを経由してimage.cppなどの実際のオブジェクトファイルとのリンクする
 target_link_libraries(librender_py PRIVATE futaba-core futaba-sensor)
+
+message(${CMAKE_CURRENT_SOURCE_DIR})
+install(TARGETS librender_py DESTINATION ${Python3_SITELIB})

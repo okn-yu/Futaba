@@ -139,6 +139,14 @@ if (FTB_PYTHON_ENABLE)
     message("Python3_FOUND: ${Python3_FOUND}")
     message("Python3_EXECUTABLE: ${Python3_EXECUTABLE}")
     message("Python3_SITE_LIB: ${Python3_SITELIB}")
+    # Python関連のライブラリが依存する共有ライブラリの保存先
+    set(PYTHON_LIBRARY_PATH /usr/local/lib/futaba/python)
+    message("PYTHON_LIBRARY_PATH: ${PYTHON_LIBRARY_PATH}")
+    # make install実行のタイミングでディレクトリを作成する
+    install(DIRECTORY DESTINATION ${PYTHON_LIBRARY_PATH})
+    # lddの検索先フォルダにPYTHON_LIBRARY_PATHを追加
+    file(WRITE /etc/ld.so.conf.d/futaba.conf ${PYTHON_LIBRARY_PATH})
+
 endif()
 
 #----------------
@@ -152,4 +160,6 @@ add_subdirectory(src)
 #add_dependencies(futaba-python futaba_py)
 #add_dependencies(futaba-python futaba-core)
 
+# 最後にldconfigの実行が必要
+#add_custom_command(TARGET mytarget POST_BUILD COMMAND ldconfig VERBATIM)
 

@@ -20,3 +20,9 @@ set_target_properties(futaba-core PROPERTIES LINKER_LANGUAGE CXX)
 if (FTB_PYTHON_ENABLE)
     add_subdirectory(python)
 endif()
+
+# TODO:
+# futabaのインストール用のフォルダを/usr/local/lib/直下に作成すること
+# https://www.wakuwakubank.com/posts/395-linux-ldd-ldconfig/
+# 場合によってはldconfigコマンドを実行しないと共有ライブラリとのリンクに失敗する場合がある
+file(COPY ${CMAKE_CURRENT_BINARY_DIR}/libfutaba-core.so DESTINATION ${PYTHON_LIBRARY_PATH})

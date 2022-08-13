@@ -21,5 +21,3 @@ pybind11_strip(futaba_py)
 # make install futaba_py
 #add_dependencies(futaba_py futaba-core)
 install(TARGETS futaba_py DESTINATION ${Python3_SITELIB})
-
-#file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/futaba_py.cpython-38-x86_64-linux-gnu.so* DESTINATION ${Python3_SITELIB})
