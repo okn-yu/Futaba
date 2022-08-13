@@ -4,10 +4,6 @@ endif ()
 
 set(INC_DIR "../../include/futaba/core")
 
-if (FTB_PYTHON_ENABLE)
-    add_subdirectory(python)
-endif()
-
 add_library(futaba-core SHARED
         ${INC_DIR}/vec3.h
         util.cpp
@@ -21,3 +17,6 @@ target_include_directories(futaba-core PRIVATE ${CMAKE_SOURCE_DIR}/ext/stb)
 
 set_target_properties(futaba-core PROPERTIES LINKER_LANGUAGE CXX)
 
+if (FTB_PYTHON_ENABLE)
+    add_subdirectory(python)
+endif()

@@ -24,7 +24,6 @@
 #  ライブラリファイルの生成(add_library)
 #  カスタムターゲットの実行(add_custom_target): 実行ファイルやライブラリファイルを生成しない
 
-
 #----------------------
 # CMakeの非推奨コマンド群
 #----------------------
@@ -72,7 +71,33 @@
 # CMake
 # -----------------
 
+#------------------------------
+# プロジェクト名とプログラム言語を指定
+#------------------------------
+
+PROJECT(PracticePathTracing CXX)
+
+#-------------------
+# CMakeのバージョン確認
+#-------------------
+
+# 対応するcmakeの最小バージョンを指定する
+# 指定を満たさない場合はエラーで終了する
+# これはルートのCMakeListsにのみ記載する
+cmake_minimum_required(VERSION 3.17)
+
+#-----------------
+# C++の標準仕様の指定
+#-----------------
+
+# C++の標準仕様の指定
+# Vec3.hのarrayなどは初期化の仕方がC++11以降にしか対応していない
+set(CMAKE_CXX_STANDARD 11)
+
+#---------------------
 # CMakeのオプションの設定
+#---------------------
+
 option(CMAKE_DEBUG_MSG "Enable CMake Debug Message" on)
 option(FTB_PYTHON_ENABLE "Enable Python Intafece" on)
 
@@ -84,33 +109,47 @@ if (CMAKE_DEBUG_MSG)
     message("Start /CMake")
 endif ()
 
+#----------------------
+# Pybind11のパッケージ確認
+#----------------------
+
 if (FTB_PYTHON_ENABLE)
-    message("Check Python enviroment")
     # Pybind11の利用時には直接add_subdirectoryの指定が必要
     add_subdirectory(ext/pybind11)
+    message("pybind11_FOUND: ${pybind11_FOUND}")
 endif()
-
-# ${CMAKE_SOURCE_DIR}:CMakeLists.txtのルートのパスを表す
-# message("DEBUG: CMAKE_SOURCE_DIR is ${CMAKE_SOURCE_DIR}")
-
-# 対応するcmakeの最小バージョンを指定する
-# 指定を満たさない場合はエラーで終了する
-# これはルートのCMakeListsにのみ記載する
-cmake_minimum_required(VERSION 3.17)
-
-# プロジェクト名とプログラム言語を指定
-# これはルートのCMakeListsにのみ記載する
-PROJECT(PracticePathTracing CXX)
 
 # 非推奨コマンド
 # 定義したライン以降の全てのターゲットが指定したディレクトリをインクルードしてしまう
 # んがっ、Mitsubaでは利用されている...!
 # include_directories(${CMAKE_SOURCE_DIR}/include)
 
+#---------------------
+# Pythonパッケージの確認
+#---------------------
 
-# C++の標準仕様の指定
-# Vec3.hのarrayなどは初期化の仕方がC++11以降にしか対応していない
-set(CMAKE_CXX_STANDARD 11)
+# -DPYTHON_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())")  \
+# -DPYTHON_LIBRARY=$(python3 -c "import distutils.sysconfig as sysconfig; print(sysconfig.get_config_var('LIBDIR'))")
 
+
+if (FTB_PYTHON_ENABLE)
+    # Python3関連のパスを取得
+    # https://cmake.org/cmake/help/latest/module/FindPython3.html#module:FindPython3
+    find_package (Python3 COMPONENTS Interpreter Development)
+    message("Python3_FOUND: ${Python3_FOUND}")
+    message("Python3_EXECUTABLE: ${Python3_EXECUTABLE}")
+    message("Python3_SITE_LIB: ${Python3_SITELIB}")
+endif()
+
+#----------------
 # サブフォルダの登録
+#----------------
+
 add_subdirectory(src)
+
+#add_custom_target(futaba-python)
+#set_target_properties(futaba-python PROPERTIES FOLDER futaba-python)
+#add_dependencies(futaba-python futaba_py)
+#add_dependencies(futaba-python futaba-core)
+
+
